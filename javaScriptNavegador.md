@@ -58,7 +58,7 @@ O defer ele serve para fazer que o javascript execute por ultimo no html;
 * A raiz da árvore é o Document(só uma raiz);
 * Cada elemento da árvore chamamos de leaf nodes (as folhas)
 
-![img](img\dom-img.png)
+![img](img/dom-img.png)
 
 #### Movendo-se Atraves do DOM
 
