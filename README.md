@@ -205,3 +205,5 @@ console.log(criaId.next().value);
 ```
 
 só vai ser chamado o generator apenas uma vez e depois chama de novo assim como no exemplo acima, podendo assim fazer um gerador de ids.
+
+Finalizado Estudo.

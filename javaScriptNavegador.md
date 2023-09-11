@@ -24,7 +24,7 @@ Podemos usar a chamada ao java script externo no html usando ele no final da pag
 ` <body>`
 
     no final do corpo:
-
+    
     `<script src=""></script>`
 
 `</body>`
@@ -169,7 +169,6 @@ elementoPai.insertBefore(novoElemento, elementoAlvo);/*inserindo um paragrafo an
 
 Ou seja crie um paragrafo, criei um nó de texto depois adicionei ao paragrafo e depois peguei o elemento pai chamei o metodo insertBefore passei o novo elemento que foi criado que vai ficar antes do elemento alvo que eu quero colocar antes.
 
-
 ##### Inserindo elementos com appendChild:
 
 Adiciona um nó após todos os elementos do elemento pai especificado;
@@ -197,7 +196,6 @@ elemento filho ficando sempre no final da fila*/
 
 pai.appendChild(novoElemento);
 ```
-
 
 ##### Alterando a DOM com replaceChild
 
@@ -250,7 +248,6 @@ p.appendChild(texto);/*adicionei o texto dentro do paragrafo */
 
 ```
 
-
 ##### Criando nós de Elemento
 
 * Podemos crar um nó de elemento com o CreateElement, e depois inserir no html
@@ -270,7 +267,7 @@ html:
 ```html
 <body>
      <div id="container">
-       
+     
      </div>
 
     <script src="teste.js"></script>
@@ -294,7 +291,6 @@ let container = document.querySelector('#container');
 container.appendChild(lista);
 ```
 
-
 ##### Modificando e Lendo atributos
 
 * Podemos resgatar o valor de um atributo ou trocar com o js;
@@ -314,7 +310,6 @@ imagem.setAttribute('width','550px');
 
 container.appendChild(imagem);
 ```
-
 
 Um exemplo usando o getAttribute:
 
@@ -336,7 +331,6 @@ console.log(container.clientWidth);//desconsidera bordas
 console.log(container.clientHeight);// desconsidera bordas
 ```
 
-
 ##### Posição do elemento na tela
 
 * Também é possivel checar a posição do elemento na tela;
@@ -346,7 +340,6 @@ console.log(container.clientHeight);// desconsidera bordas
 let titulo = document.querySelector('#titulo');
 console.log(titulo.getBoundingClientRect());
 ```
-
 
 ##### Estilizando com JS
 
@@ -401,3 +394,156 @@ for(i=0; i < itens.length;i++){
     itens[i].style.color ='red';
 }
 ```
+
+##### Mais sobre estilização:
+
+```js
+// pegando o valor
+nome.value;
+document.querySelector('#display').value = "receber algum valor";
+
+//adicionando valor no elemento com css
+document.querySelector('#display').style.backgrounColor = 'blue';
+let valor = document.querySelector('#display');
+valor.style.backgrounColor = 'blue';
+
+//quando quero adicionar um css ja pronto no elemento
+let i = document.querySelector('.menu');//pego o elemento
+i.classList.add('fa-b');//adiciono a classe de css no elemento
+
+//verificando se contem a classe no elemento
+i.classList.contains('fa-b');
+
+// remove a classe do elemento
+i.classList.remove('fa-b');
+
+// para adicionar um elemeto
+botao.appendChild(i);
+//removendo um elemento
+botao.removeChild(i);
+```
+
+
+
+## Eventos com JavaScript		
+
+O que são Eventos?
+
+* Ações condicionadas a algum tipo de resposta feita pelo usuário;
+* Por exemplo clicks, aperta uma tecla ou até movimento do mouse;
+* Podemos atrelar lógica a essas ações do usuário;
+* por meio de handlers;
+
+### Como acionar um evento
+
+* Devemos atrelar o evento a um elemento, por exemplo um botão;
+* Depois inserir um listener e o tipo de evento como argumento;
+* Ai o elemento responderá por este evento e, obviamente os outros da página não;
+
+```js
+let btn = document.querySelector('#btn'); //pega o elemento pelo id e adiciona a variavel.
+
+/* este metodo, ele recebe um evento e uma função,
+ podendo usar arrowfunction ou não. 
+*/
+btn.addEventListener('click',()=>{
+    console.log('clicou');
+});
+
+// outra forma
+
+let valor = function(){
+    console.log('clicou');
+};
+
+btn.addEventListener('click', valor);//não preciso aqui colocar valor() só valor
+```
+
+### Removendo eventos
+
+* Da mesma forma que podemos adicionar eventos, podemos remover quando acharmos necessário;
+* Para isso utilizaremos o método removeEventListener, onde passamos o evento e a função que o evento está escutando.
+
+```js
+function msg(){
+    console.log('clicou');
+}
+
+btn.addEventListener('click', msg);
+
+setTimeout(()=>{
+  btn.removeEventListener('click',msg);
+},3000);
+```
+
+
+### O objeto do evento
+
+* Quando criamos eventos, temos a opção de ultilizae argumento opcional, que é chamado de objeto do evento;
+* Ele contém propiedades que podem ser utilizadas a nosso favor;
+* O objeto é criado pelo javascript automaticamente;
+
+```js
+function msg(e){
+    console.log(e);
+}
+
+btn1.addEventListener('click', msg); 
+
+btn2.addEventListener('click', function(evento){
+    console.log(evento);
+});
+```
+
+Acima está duas formas de se fazer, e no console podemos ver as propiedades que podemos ultilizar.
+
+### Propagação
+
+* Qaundo não definimos um elemento muito bem (seletor brando) ou um elemento que está dentro de outro tem um evento;
+* Pode acontecer a propagação, ou seja, o outro elemento ativar um evento também, aí teremos uma duplicação;
+* Por isso temos um método que para está propagação e resolve este problema, o stopPropagation;
+
+HTML:
+
+```html
+<body>
+  
+    <p><button id="btn1">clique em mim</button></p>
+
+    <script src="teste.js"></script>
+</body>
+```
+
+JS:
+
+```js
+let btn1 = document.querySelector('#btn1'); //pega o elemento pelo id e adiciona a variavel.
+let p = document.querySelector('p');
+
+function msg(e){
+    console.log('clicou!!');
+    e.stopPropagation();//eu coloco onde eu quero que o evento funcione e pare
+}
+
+btn1.addEventListener('click', msg);
+
+p.addEventListener('click', ()=>{
+   console.log('clicou no paragrafo');
+});
+
+```
+
+Quando temos um paragrafo com um botão dentro:
+
+ou seja quando temos evento no paragrafo e evento no botão se não usarmos o metodo stopPropagation quando clicar no botão ele vai executar
+
+o evento do botão e o evento do paragrafo.
+
+
+
+
+
+
+
+
+
