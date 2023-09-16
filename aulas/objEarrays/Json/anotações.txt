@@ -1,0 +1,21 @@
+JSON = javaScript Object Notation;
+
+-> ultilizado para comunicações entre serviços, ex: back end <-> front end.
+-> e podemos tambem fazer comunicações entre apis.
+Basicamente um tipo de dado padronmizado, que lembra muito os objetos do javaScript;
+{
+    "name":"Miguel",
+    "idade": 36,
+    "profissao":"developer"
+}
+
+podemos tambem receber arquivos em json. O json ele não tem metodos e tambem não tem comentarios ele so serve para entregar ou receber dados.
+
+O PADRAO DO JSON:
+ apenas aspas duplas e não aceita comentarios e não tem metodos.
+
+ quando queremos converter um json para string usamos:
+ let jsonToString = JSON.stringify(car);
+
+ e de string para JSON:
+ let stringToJason = JSON.parse(jsonString);

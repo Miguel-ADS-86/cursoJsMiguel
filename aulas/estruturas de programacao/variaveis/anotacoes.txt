@@ -1,0 +1,16 @@
+formas de declarar variaveis no java escript:
+  usamos o let para criar a variavel em java script.
+
+  let laranja = 5;
+  console.log(`tem ${laranja} na sexrta!`);
+
+  podemos definir varias variaveis de uma vez so.
+  let quadrado=4, triangulo=5, retangulo=6;
+
+  antigamente as variaveis no js nas versões passadas eram declaradas com a a sintax var e gerava alguns problemas mais tecnicos.
+  a partir da versão 6 lansaram o let e o const(declara constante).
+
+var nome = "Miguel";//não se usa mais o var
+const ip="1.255.255.168";// o const não pode alterar ele durante o uso do programa.
+
+

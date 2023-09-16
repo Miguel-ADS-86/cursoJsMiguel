@@ -1,0 +1,5 @@
+----- TIPOS DE DADOS ------
+texto - string
+numeros - number
+boolean - verdadeiro ou falso
+empty - (null, undefined) valores vazios particulares do java script.

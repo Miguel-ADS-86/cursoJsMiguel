@@ -539,11 +539,39 @@ ou seja quando temos evento no paragrafo e evento no botão se não usarmos o me
 
 o evento do botão e o evento do paragrafo.
 
+### Ações default
 
+* Muitos elementos teclas já tem ações pre-definidas,como clicar num link nos levar para outra pagina;
+* Podemos para este evento default, e criar uma lógica diferente para o elemento em questão;
 
+```js
+let a = document.querySelecto('a');
+a.addEventListener("click", function(e){
+    e.preventDefault();//ele para o evento e você pode colocar outro novo evento
+    console.log('clicou mais não mudou o link');
+});
+```
 
+### Eventos de tecla (key event)
 
+* sempre que uma tecla é pressionada, são gerados dois eventos KEYUP e KEYDOWN
+* podemos realizar ações nestes eventos também;
+* keyup é quando soltamos a tecla;
+* keydown é quando apertamos;
 
+quando é um evento que não pertence ao navegador exemplo evento de teclado  etc usamos o window.addEventListener;
 
+```js
+window.addEventListener("keydown",(e)=>{
+   if(e.key == 'q'){
+      console.log('apertou a letra q');
+   }
+});
 
+window.addEventListener("keyup",(e)=>{
+    if(e.key == 'q'){
+       console.log('soltou o q');
+    }
+ });
+```
 

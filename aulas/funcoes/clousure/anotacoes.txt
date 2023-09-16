@@ -1,0 +1,1 @@
+esta função clousure é uma função que se lembra da outra.

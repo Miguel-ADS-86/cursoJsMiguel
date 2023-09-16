@@ -1,0 +1,37 @@
+no java script declaramos uma função com a palavra function,
+uma função pode ter argumentos, parametros definidos entre () e o corpo
+da função entre {}.
+
+Geralmente uma função retorna um valor.
+
+Exemplo:
+function escreverConsole(){
+    console.log('Ola mundo!');
+}
+
+escreverConsole();
+
+----------------------------------------------------------------------
+
+É possivel declarar funções em variaveis:
+Exemplo:
+
+const textoNoConsole = function(){
+    console.log('Ola mundo!');
+}
+
+textoNoConsole();
+
+-----------------------------------------------------------------------
+
+função com parametros
+Exemplo:
+const textoNoConsole = function(texto){
+    console.log(texto);
+}
+
+textoNoConsole();
+
+------------------------------------------------------------------------
+
+

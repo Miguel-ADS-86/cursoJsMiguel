@@ -1,0 +1,24 @@
+as funções o que você pode fazer com elas:
+você pode executar, chamar ou invocar uma função.
+
+sintaxe da função:
+NomeDaFuncao(); -> desta forma chamamos a função.
+NomeDaFuncao(parametro1,parametro2); -> podemos chamar funções usando parametros.
+
+1) função do java Script built-in: prompt();
+recebe um input do usuario do sistema e pode guarda este valor, esta função não é muito ultilizada.
+
+    let nome = prompt('qual sua idade');
+
+2) função do java Script built-in: alert();
+esta função é pouco usada e exibe uma mensagem na tela do usuário.
+e ele impede a navegação se o usuario não aperta o ok.
+    
+    alert('Salvo com sucesso.');
+
+3) função do java Script built-in: Math.x();
+  é ultilizada para expressões matematica. Ela é muito ultilizada!
+  
+    let maiorNumero = Math.max(1,2,3);
+
+

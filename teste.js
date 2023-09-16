@@ -1,11 +1,21 @@
-window.addEventListener("keydown",(e)=>{
-   if(e.key == 'q'){
-      console.log('apertou a letra q');
-   }
+let btn = document.querySelector('button');
+let btn2 = document.querySelector('#b');
+
+btn.addEventListener("dblclick",function(){
+   console.log("Ativou o double click!");
+});
+/*
+btn2.addEventListener("mousedown",function(){
+   console.log("aperttou o botao!");
 });
 
-window.addEventListener("keyup",(e)=>{
-    if(e.key == 'q'){
-       console.log('soltou o q');
-    }
- });
+btn3.addEventListener("mouseup",function(){
+   console.log("soltou o botao!");
+});*/
+
+/* pegando o evento do botão direito */
+
+btn2.addEventListener("contextmenu", function(e){
+    e.preventDefault();
+    console.log("botão direito");
+});
