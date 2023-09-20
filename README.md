@@ -1,4 +1,104 @@
-# Programação Assíncrona com JavaScript
+# Conceito de Orientação a objeto!
+
+* Uma forma de programar, que utiliza os objetos como o seu principal princípio;
+* Aelem de ultilizar conceitos e tecnicas que envolve objetos;
+* A maioria dos softwares, na parte de back-end, são desenvolvidos em cima desse paradigma;
+
+
+
+## Aprofundando em métodos
+
+* Propriedade que servem como funções;
+* Ou seja, as ações dos objetos invocam os métodos da mesma maneira que funções;
+* Dentro do objeto os atributos e métodos são separados por virgulas;
+
+### Abaixo tem os metodos getters e setters no objeto cachorro:
+
+```js
+let cachorro = {
+    nome: "",
+    setNome:(nome)=>{
+       this.nome = nome;
+    },
+    getNome:()=>{
+      return this.nome;
+    },
+    latir: function(){
+      console.log("au au");
+    }
+}
+
+cachorro.latir();
+cachorro.setNome('Doug');
+console.log(cachorro.getNome());
+
+```
+
+## Prototypes
+
+* Um objeto fallback de outro objeto; é a instancia do objeto em si;
+* Quando um objeto recebe uma requisição de uma propriedade que não tem, ela é procura no prototype deste objeto.
+* O prototype de um objeto criado do zero é o Object, que tem os metodos nativos da linguagem;
+* Todo objeto tem um prototype.
+
+  
+
+```js
+//é um objeto que é pai de um objeto que eu estou ultilizando.
+
+const cliente = {
+   maos: 2,
+ }
+ console.log(Object.getPrototypeOf(cliente));
+ console.log(Object.getPrototypeOf(cliente) === Object.prototype);
+```
+
+### Quando criamos um objeto a partir de um outro:
+
+* A base será o prototype.
+* Ele herdará tanto os métodos e propriedades de Object (o prototype do objeto base);
+
+```js
+let pessoa = {
+  maos: 2
+};
+
+//criando um objeto a partir de outro objeto
+let pessoaNova = Object.create(pessoa);//criando uma pessoa na pessoaNova ou seja instanciando.Consigo usar metodos e atributos.
+
+console.log(pessoaNova.maos);
+console.log(Object.getPrototypeOf(pessoaNova) == pessoa);
+```
+
+## Classes
+
+* O prototype do javaScript pode ser chamado de classe;
+* Pois nas outras linguagens uma Class é um molde de um objeto;
+* Ou seja, podemos criar diversos objetos em cima de um prototype;
+
+```js
+let cachorro ={ //classe cachorro
+  tipo:'mamifero',
+  raca:'vira-lata'
+}
+
+let pastorAlemao = Object.create(cachorro); //instancio ou seja criando um objeto tipo cachorro.
+console.log(pastorAlemao.raca);
+pastorAlemao.raca = 'Pastor Alemão'
+console.log(pastorAlemao.raca);
+```
+
+
+
+
+
+
+
+
+
+
+
+## Programação Assíncrona com JavaScript
 
 estudo js asscincrona e js com o dom
 

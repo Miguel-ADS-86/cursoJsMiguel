@@ -575,3 +575,113 @@ window.addEventListener("keyup",(e)=>{
  });
 ```
 
+### Eventos de Mouse
+
+* No mouse temos também eventos como mousedown e mouseup, semelhantes aos das teclas;
+* Dblclick para ativar com dois cliques;
+
+```js
+let btn = document.querySelector('button');
+let btn2 = document.querySelector('#b');
+
+btn.addEventListener("dblclick",function(){
+   console.log("Ativou o double click!");
+});
+/*
+btn2.addEventListener("mousedown",function(){
+   console.log("aperttou o botao!");
+});
+
+btn3.addEventListener("mouseup",function(){
+   console.log("soltou o botao!");
+});*/
+
+/* pegando o evento do botão direito */
+
+btn2.addEventListener("contextmenu", function(e){
+    e.preventDefault();
+    console.log("botão direito");
+});
+```
+
+#### Movimento do Mouse
+
+* Podemos ativar eventos com a movimentação do mouse também;
+* O nome é mousemove;
+* Através desse evento podemos detectar a posição do ponteiro do mouse na tela;
+
+Exemplo:
+
+```js
+window.addEventListener('mousemove',(e)=>{
+    console.log(e.x);
+    console.log(e.y);
+});
+```
+
+#### Eventos por scroll
+
+* Podemos atrelar evento ao scroll da tela também, pelo vento scroll;
+* Por exemplo: podemos criar um elemento assim que o scroll atingir uma posição x;
+
+```js
+window.addEventListener('scroll', function(e){
+     if(window.pageYOffset> 100){
+         console.log("chegou na posição");
+     }
+})
+```
+
+#### Eventos por foco
+
+* Quando focamos em um elemento ou saímos dele, podemos também atrelar um evento a esta ação;
+* Focus para quando um elemento recebe foco e blur quando ele perde;
+
+exemplo:
+
+```js
+let input = document.querySelector("input");
+
+input.addEventListener('focus', function(){
+    console.log('foco no input');
+});
+
+input.addEventListener('blur', function(){
+   console.log('perdeu o foco');
+});
+
+```
+
+#### Evento de carregamento
+
+* Podemos atrelar um evento quando a página carrega, pelo evento load;
+* E antes do usuário fechar a página pelo evento beforeunload;
+
+```js
+window.addEventListener('load', function(e){
+       alert('assine os nossos termos de uso');
+});
+
+window.addEventListener('beforeunload', function(e){
+       e.returnValue = null;
+});
+```
+
+#### Debounce
+
+* Um evento que dispara múltiplas vezes pode ser um problema para o computador do cliente;
+* Por isso podemos fazer um debounce, que é um suavizador de evento, para não o chamar o mesmo tantas vezes
+
+```js
+let timeout;
+
+window.addEventListener('mousemove',function(e){
+    this.clearTimeout(timeout);
+    timeout = setTimeout(function(){
+       console.log(e.x);
+    },500);
+});
+```
+
+
+
