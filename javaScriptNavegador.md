@@ -423,6 +423,25 @@ botao.appendChild(i);
 botao.removeChild(i);
 ```
 
+##### Adicionando valor com InnerText:
+
+```js
+function listarNomes(){
+            let tr = document.createElement('tr');
+            let nome = document.createElement('td');
+            let id = document.createElement('td');
+            tr.appendChild(id);
+            tr.appendChild(nome);
+            tabela.appendChild(tr);
+            for(let i = 0; i < nomes.length; i++){
+                id.innerText = i;
+                nome.innerText = nomes[i]; //adiciona valor dentro de um td chamado nome
+            }
+        }
+```
+
+obs: quando queremos pegar valores do formulario e exibir na pagina, não ultilizar o type do submit pois ele envia o formulário, usar o type=button que vai pegar normalmente.
+
 
 
 ## Eventos com JavaScript		

@@ -1,7 +1,7 @@
 # Conceito de Orientação a objeto!
 
 * Uma forma de programar, que utiliza os objetos como o seu principal princípio;
-* Aelem de ultilizar conceitos e tecnicas que envolve objetos;
+* Além de utilizar conceitos e técnicas que envolve objetos;
 * A maioria dos softwares, na parte de back-end, são desenvolvidos em cima desse paradigma;
 
 
@@ -75,6 +75,7 @@ console.log(Object.getPrototypeOf(pessoaNova) == pessoa);
 * O prototype do javaScript pode ser chamado de classe;
 * Pois nas outras linguagens uma Class é um molde de um objeto;
 * Ou seja, podemos criar diversos objetos em cima de um prototype;
+* O prototype pode ser chamado de classe
 
 ```js
 let cachorro ={ //classe cachorro
@@ -88,11 +89,252 @@ pastorAlemao.raca = 'Pastor Alemão'
 console.log(pastorAlemao.raca);
 ```
 
+Usando o Object.create(classe) e como se tivemos instanciando um objeto a partir de uma classe que é passada como parametro do metodo do object.
+
+Um objeto também pode ser uma classe que vai servir como molde.
+
+Craindo classe pelo Object.create não é a maneira mais utilizada, uamos o construtor:
+
+### CONSTRUTOR POR FUNÇÃO
+
+* Construtores são formas de instanciar uma classe em uma linguagem de programação;
+* Instancia cria um objeto novo;
+* No construtor já podemos definir propiedades;
+
+```js
+function criarCachorro(raca, patas, cor){
+  let cachorro = Object.create({});//criou o objeto vazio
+  cachorro.raca = raca;
+  cachorro.patas = patas;
+  cachorro.cor = cor;
+  cachorro.latir = ()=>{
+     console.log('au au au ...');
+  }
+  return cachorro;
+}
+
+let doberman = criarCachorro('Dorberman',4,'preto');
+console.log(doberman)
+doberman.latir();
+```
+
+### Construtor por New
+
+* Em muitas linguagens temos a possibilidade de instanciar um objeto com new, no js também;
+* Quando criamos uma função com letra maiuscula por convensão é uma classe, function Cachorro(raca)
+
+```js
+function Cachorro(raca){
+   this.raca = raca;
+}
+let husky = new Cachorro('Husky');
+console.log(husky.raca);
+```
+
+### Métodos no prototype 
+
+```js
+function Cachorro(raca){
+   this.raca = raca;
+}
+//serve para separar metodos das classes para deiachar a classe somente com as propiedades
+// assim a maneira mais correta para criar metodos ao objeto.
+Cachorro.prototype.uivar = function(){
+    console.log('uivar');
+}
+
+let dog = new Cachorro('vira-lata');
+dog.uivar();
+```
+
+### Construtor na Classe (ES6) 
+
+* Com a versão do ES6, uma possibilidade de criar (objeto) com construtor adicionado.
+* Então não precisamos criar por meio de uma função, veja;
+* É uma nova atualização do Java script que saiu entre 2015 e 2016.
+
+```js
+class Cachorro{
+    constructor(raca){
+        this.raca = raca;
+    }   
+}
+
+let labrador = new Cachorro('Labrador');
+console.log(labrador);
+```
+
+  Mais sobre Classes
+
+* Não podemos adicionar propiedades na classe, só via prototype;
+* A classe só aceita métodos. 
+
+```js
+class Cachorro{
+    constructor(raca){
+        this.raca = raca;
+    }
+
+    latir(){
+      console.log('au au au...');
+    }   
+}
+let labrador = new Cachorro('Labrador');
+Cachorro.prototype.patas = 4;
+
+console.log(labrador);
+console.log(labrador.patas);
+console.log(labrador.latir());
+```
+
+### Override nas propiedades do Prototype
+
+* Sempre que adicionamos uma propiedade a um objeto, é criada uma idêntica no prototype;
+* Podemos substituir a do prototype;
+
+```JS
+class Cachorro{
+    constructor(raca){
+        this.raca = raca;
+    }
+
+    latir(){
+      console.log('au au au...');
+    }   
+}
+let labrador = new Cachorro('Labrador');
+Cachorro.prototype.patas = 4;
+Cachorro.prototype.raca = 'SRC';
+
+console.log(Cachorro.prototype.raca);// PODENDO TER UM VALOR PADRÃO USANDO PROTOTYPE
+console.log(labrador.raca);//VALOR USANDO O CONSTRUTOR
+```
+
+### Symbols (Serve para fazer constantes)
+
+* Propriedades únicas, que não podem ser alteradas e nem criadas duas vezes;
+* Podemos utilizar como uma constante, só que para a propriedade de objeto.
+
+```js
+class Cachorro{
+    constructor(raca){
+        this.raca = raca;
+    }
+
+    latir(){
+      console.log('au au au...');
+    }   
+}
+let labrador = new Cachorro('Labrador');
+
+Cachorro.prototype.raca = 'SRC';
+
+// assim que eu crio a constante
+let patas = Symbol();
+Cachorro.prototype[patas] = 4;
+
+//acessado o symbol
+console.log(`meu cachorro tem ${Cachorro.prototype[patas]}`);
+```
+
+### Getters e Setters da  Usando Classe do (ES6)
+
+* Get: serve para resgatar o valor de ua propriedade.
+* Set: serve para alterar o valor de uma propriedade;
+
+```js
+class Cachorro{
+    constructor(raca){
+        this.raca = raca;
+    }
+    
+    get getRaca(){
+        return 'A raça é ' + this.raca;
+    }
+
+    set setRaca(raca){
+       this.raca = raca;
+    }
+
+    latir(){
+      console.log('au au au...');
+    }   
+}
+
+let labrador = new Cachorro('SRC');
+console.log(labrador);
+
+labrador.setRaca = 'Labrador';
+console.log(labrador.getRaca);
+```
+
+### Herança (INHERITANCE)
+
+* Uma classe pode herdar propriedades de outra classe por Herança.
+* Para isso utilizamos extends;
+
+```js
+class Mamifero{
+    constructor(patas){
+       this.patas = patas;
+    }
+}
+
+let coiote = new Mamifero(4);
+console.log(`O coiote tem ${coiote.patas} patas`);
+
+class Cachorro extends Mamifero{
+    constructor(patas, raca){
+        super(patas, patas);
+        this.raca = raca;
+    }
+
+    latir(){
+        console.log('au au au');
+    }
+}
+
+let pug = new Cachorro(4, 'vira-lata');
+console.log(pug.patas + ' e ' + pug.raca);
+pug.latir();
+```
+
+### Instanceof operator
+
+* Podemos verificar quem é o pai do objeto utilizando o instanceof.
+
+```js
+class Mamifero{
+    constructor(patas){
+       this.patas = patas;
+    }
+}
+
+let coiote = new Mamifero(4);
+console.log(`O coiote tem ${coiote.patas} patas`);
+
+class Cachorro extends Mamifero{
+    constructor(patas, raca){
+        super(patas, patas);
+        this.raca = raca;
+    }
+
+    latir(){
+        console.log('au au au');
+    }
+}
+
+let pug = new Cachorro(4, 'vira-lata');
+console.log(pug.patas + ' e ' + pug.raca);
+pug.latir();
+
+//o cachorro herda do mamifero
+console.log(new Cachorro instanceof Mamifero);
+```
 
 
 
-
-
+fazer os exercício de orientação objeto desta seção...
 
 
 
